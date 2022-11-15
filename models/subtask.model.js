@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Task = sequelize.define("tasks", {
+    const Subtask = sequelize.define('subtasks', {
         title: {
             type: Sequelize.STRING
         },
@@ -9,19 +9,16 @@ module.exports = (sequelize, Sequelize) => {
         due_date: {
             type: Sequelize.DATE
         },
-        user_id: {
-            type: Sequelize.INTEGER
-        },
         priority_id: {
             type: Sequelize.INTEGER
         },
         label_id: {
             type: Sequelize.INTEGER
         },
-        project_id: {
+        parent_id: {
             type: Sequelize.INTEGER
         },
-        project_section_id: {
+        task_id: {
             type: Sequelize.INTEGER
         },
         createdAt: {
@@ -36,9 +33,7 @@ module.exports = (sequelize, Sequelize) => {
             field: 'deleted_at',
             type: Sequelize.DATE,
         },
-
-
     })
 
-    return Task;
+    return Subtask;
 }
