@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 require("./routes/task.route")(app);
 require("./routes/subtask.route")(app);
 require("./routes/project.route")(app);
+require("./routes/projectSection.route")(app);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

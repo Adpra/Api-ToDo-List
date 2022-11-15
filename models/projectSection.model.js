@@ -1,9 +1,9 @@
 module.exports = (sequelize, Sequelize) => {
-    const Project = sequelize.define('projects', {
+    const ProjectSection = sequelize.define('project_sections', {
         title: {
             type: Sequelize.STRING
         },
-        color_id: {
+        project_id: {
             type: Sequelize.INTEGER
         },
         createdAt: {
@@ -20,5 +20,5 @@ module.exports = (sequelize, Sequelize) => {
         },
     })
 
-    return Project;
+    return ProjectSection;
 }

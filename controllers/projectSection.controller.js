@@ -1,25 +1,27 @@
 const db = require("../models");
-const Project = db.project;
+const ProjectSection = db.projectSection;
+
 
 exports.create = (req, res) => {
-    const projects = {
+    const projectSections = {
         title: req.body.title,
-        color_id: req.body.color_id
+        project_id: req.project_id
     }
 
-    Project.create(projects)
+    ProjectSection.create(projectSections)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the Project."
+                message: err.message || "Some error occurred while creating the ProjectSection."
             });
         })
 }
 
 exports.findAll = (req, res) => {
-    Project.findAll({ where: { deleted_at: null } })
+
+    ProjectSection.findAll({ where: { deleted_at: null } })
         .then(data => {
             res.send(data);
         })
@@ -34,14 +36,14 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Project.findByPk(id)
+    ProjectSection.findByPk(id)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving Project with id=" + id
+                    err.message || "Some error occurred while retrieving ProjectSection with id=" + id
             });
         })
 }
@@ -49,26 +51,26 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Project.update(req.body, {
+    ProjectSection.update(req.body, {
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Project was updated successfully."
+                    message: "ProjectSection was updated successfully."
 
                 });
             } else {
                 res.send({
-                    message: `Cannot update Project with id=${id}. Maybe Project 
-           was not found or req.body is empty!`
+                    message: `Cannot update ProjectSection with id=${id}. Maybe ProjectSection 
+       was not found or req.body is empty!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Error Updateing Project with id=" + id
+                    err.message || "Error Updateing ProjectSection with id=" + id
             });
         })
 }
@@ -80,24 +82,24 @@ exports.delete = (req, res) => {
         deletedAt: Date.now()
     }
 
-    Project.update(deleted, {
+    ProjectSection.update(deleted, {
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "Project delete was succsessfully"
+                    message: "ProjectSection delete was succsessfully"
                 });
             } else {
                 res.send({
-                    message: `Cannot delete Project with id=${id}. Maybe Project was not found!`
+                    message: `Cannot delete ProjectSection with id=${id}. Maybe ProjectSection was not found!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving Project."
+                    err.message || "Some error occurred while retrieving ProjectSection."
             })
         })
 }
