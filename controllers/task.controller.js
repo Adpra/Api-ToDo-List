@@ -41,15 +41,18 @@ exports.findAll = (req, res) => {
         include: [
             {
                 model: Priority,
+                // where: { deleted_at: null },
                 as: 'priority',
                 attributes: ['id', 'tag']
             },
             {
                 model: Label,
                 as: 'category',
-                attributes: ['id', 'tag']
+                // where: { deleted_at: null },
+                attributes: ['id', 'tag'],
             },
-        ]
+        ],
+
     })
         .then(data => {
             res.send(data);

@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Priority = sequelize.define('properties', {
+    const Priority = sequelize.define('priorities', {
         tag: {
             type: Sequelize.STRING
         },

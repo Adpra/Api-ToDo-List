@@ -40,7 +40,7 @@ module.exports = (sequelize, Sequelize) => {
 
     })
 
-    const Priority = sequelize.define('properties');
+    const Priority = sequelize.define('priorities');
 
     const Label = sequelize.define('labels');
 
@@ -48,7 +48,7 @@ module.exports = (sequelize, Sequelize) => {
         foreignKey: {
             name: "priority_id"
         },
-        as: 'priority'
+        as: 'priority',
     });
     Task.belongsTo(Label, {
         foreignKey: {
