@@ -22,6 +22,7 @@ db.task = require("./task.model.js")(sequelize, Sequelize);
 db.subtask = require("./subtask.model.js")(sequelize, Sequelize);
 db.project = require("./project.model.js")(sequelize, Sequelize);
 db.projectSection = require("./projectSection.model.js")(sequelize, Sequelize);
-
+db.priority = require("./priority.model.js")(sequelize, Sequelize);
+db.label = require("./label.model.js")(sequelize, Sequelize);
 
 module.exports = db;
