@@ -1,6 +1,8 @@
+
 const db = require("../models");
 const Task = db.task;
-// const Op = db.Sequelize.Op;
+const Priority = require("../models").priority;
+const Label = require("../models").label;
 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
@@ -30,7 +32,25 @@ exports.create = (req, res) => {
 };
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
-    Task.findAll({ where: { deleted_at: null } })
+    Task.findAll({
+        order: [
+            ['id', 'DESC'],
+        ],
+        where: { deleted_at: null },
+        attributes: ['id', 'title', 'description', 'due_date'],
+        include: [
+            {
+                model: Priority,
+                as: 'priority',
+                attributes: ['id', 'tag']
+            },
+            {
+                model: Label,
+                as: 'category',
+                attributes: ['id', 'tag']
+            },
+        ]
+    })
         .then(data => {
             res.send(data);
         })
@@ -45,7 +65,24 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Task.findByPk(id)
+    Task.findByPk(id, {
+        order: [
+            ['id', 'DESC'],
+        ],
+        attributes: ['id', 'title', 'description', 'due_date'],
+        include: [
+            {
+                model: Priority,
+                as: 'priority',
+                attributes: ['id', 'tag']
+            },
+            {
+                model: Label,
+                as: 'category',
+                attributes: ['id', 'tag']
+            },
+        ]
+    })
         .then(data => {
             res.send(data)
         })

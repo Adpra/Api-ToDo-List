@@ -15,6 +15,7 @@ module.exports = (sequelize, Sequelize) => {
         priority_id: {
             type: Sequelize.INTEGER
         },
+
         label_id: {
             type: Sequelize.INTEGER
         },
@@ -37,8 +38,26 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DATE,
         },
 
-
     })
+
+    const Priority = sequelize.define('properties');
+
+    const Label = sequelize.define('labels');
+
+    Task.belongsTo(Priority, {
+        foreignKey: {
+            name: "priority_id"
+        },
+        as: 'priority'
+    });
+    Task.belongsTo(Label, {
+        foreignKey: {
+            name: "label_id"
+        },
+        as: 'category'
+    });
 
     return Task;
 }
+
+
