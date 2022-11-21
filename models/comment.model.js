@@ -1,12 +1,18 @@
 module.exports = (sequelize, Sequelize) => {
-    const Priority = sequelize.define('priorities', {
-        tag: {
+    const Comment = sequelize.define('comments', {
+        text: {
             type: Sequelize.STRING
         },
-        sort_level: {
+        file: {
+            type: Sequelize.STRING
+        },
+        user_id: {
             type: Sequelize.INTEGER
         },
-        color_id: {
+        task_id: {
+            type: Sequelize.INTEGER
+        },
+        subtask_id: {
             type: Sequelize.INTEGER
         },
         createdAt: {
@@ -21,8 +27,7 @@ module.exports = (sequelize, Sequelize) => {
             field: 'deleted_at',
             type: Sequelize.DATE,
         },
-        paranoid: true,
     })
 
-    return Priority;
+    return Comment;
 }

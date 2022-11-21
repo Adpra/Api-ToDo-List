@@ -25,6 +25,10 @@ require("./routes/project.route")(app);
 require("./routes/projectSection.route")(app);
 require("./routes/priority.route")(app);
 require("./routes/label.route")(app);
+require("./routes/color.route")(app);
+require("./routes/comment.route")(app);
+require("./routes/user.route")(app);
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

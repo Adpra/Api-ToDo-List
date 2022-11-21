@@ -1,13 +1,17 @@
 module.exports = (sequelize, Sequelize) => {
-    const Priority = sequelize.define('priorities', {
-        tag: {
+    const User = sequelize.define('users', {
+        email: {
+            type: Sequelize.STRING,
+            unique: true
+        },
+        username: {
             type: Sequelize.STRING
         },
-        sort_level: {
-            type: Sequelize.INTEGER
+        password: {
+            type: Sequelize.STRING
         },
-        color_id: {
-            type: Sequelize.INTEGER
+        confrim_password: {
+            type: Sequelize.STRING
         },
         createdAt: {
             field: 'created_at',
@@ -21,8 +25,7 @@ module.exports = (sequelize, Sequelize) => {
             field: 'deleted_at',
             type: Sequelize.DATE,
         },
-        paranoid: true,
     })
 
-    return Priority;
+    return User;
 }

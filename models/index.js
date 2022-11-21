@@ -24,5 +24,9 @@ db.project = require("./project.model.js")(sequelize, Sequelize);
 db.projectSection = require("./projectSection.model.js")(sequelize, Sequelize);
 db.priority = require("./priority.model.js")(sequelize, Sequelize);
 db.label = require("./label.model.js")(sequelize, Sequelize);
+db.color = require("./color.model.js")(sequelize, Sequelize);
+db.comment = require("./comment.model")(sequelize, Sequelize);
+db.user = require("./user.model")(sequelize, Sequelize);
+
 
 module.exports = db;

@@ -36,6 +36,7 @@ exports.findAll = (req, res) => {
         order: [
             ['id', 'DESC'],
         ],
+
         where: { deleted_at: null },
         attributes: ['id', 'title', 'description', 'due_date'],
         include: [

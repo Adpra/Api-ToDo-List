@@ -1,13 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
-    const Priority = sequelize.define('priorities', {
+    const Color = sequelize.define('colors', {
         tag: {
             type: Sequelize.STRING
         },
-        sort_level: {
-            type: Sequelize.INTEGER
-        },
-        color_id: {
-            type: Sequelize.INTEGER
+        hex_color: {
+            type: Sequelize.STRING
         },
         createdAt: {
             field: 'created_at',
@@ -21,8 +18,7 @@ module.exports = (sequelize, Sequelize) => {
             field: 'deleted_at',
             type: Sequelize.DATE,
         },
-        paranoid: true,
     })
 
-    return Priority;
+    return Color;
 }

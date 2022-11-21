@@ -1,3 +1,6 @@
+const { Model } = require("sequelize");
+
+
 module.exports = (sequelize, Sequelize) => {
     const Task = sequelize.define("tasks", {
         title: {
@@ -38,6 +41,8 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DATE,
         },
 
+        paranoid: true
+
     })
 
     const Priority = sequelize.define('priorities');
@@ -50,6 +55,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         as: 'priority',
     });
+
     Task.belongsTo(Label, {
         foreignKey: {
             name: "label_id"
