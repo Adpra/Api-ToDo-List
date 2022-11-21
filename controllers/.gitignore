@@ -5,8 +5,6 @@
 
 # Node artifact files
 node_modules/
-dist/
-vendor/
 
 # Compiled Java class files
 *.class
@@ -66,6 +64,3 @@ storage/
 stubs/
 public/qr-code-temp/
 public/qr-code/
-composer.lock
-bootstrap/cache/packages.php
-bootstrap/cache/services.php
