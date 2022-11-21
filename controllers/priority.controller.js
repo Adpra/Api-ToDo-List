@@ -21,7 +21,14 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-    Priority.findAll({ where: { deleted_at: null } })
+    Priority.findAll({
+        order: [
+            ['id', 'DESC'],
+        ],
+        where: {
+            deleted_at: null
+        }
+    })
         .then(data => {
             res.send(data);
         })
@@ -36,7 +43,9 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Priority.findByPk(id)
+    Priority.findOne({
+        where: { id: id, deleted_at: null },
+    })
         .then(data => {
             res.send(data)
         })

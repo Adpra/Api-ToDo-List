@@ -19,7 +19,13 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-    Label.findAll({ where: { deleted_at: null } })
+    Label.findAll({
+        order: [
+            ['id', 'DESC'],
+        ],
+        where:
+            { deleted_at: null }
+    })
         .then(data => {
             res.send(data);
         })
@@ -34,7 +40,9 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Label.findByPk(id)
+    Label.findOne({
+        where: { id: id, deleted_at: null },
+    })
         .then(data => {
             res.send(data);
         })

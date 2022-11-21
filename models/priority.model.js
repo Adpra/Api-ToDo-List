@@ -21,7 +21,6 @@ module.exports = (sequelize, Sequelize) => {
             field: 'deleted_at',
             type: Sequelize.DATE,
         },
-        paranoid: true,
     })
 
     return Priority;

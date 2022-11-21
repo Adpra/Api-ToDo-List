@@ -69,6 +69,12 @@ module.exports = (sequelize, Sequelize) => {
         as: 'category'
     });
 
+    Task.addScope(null, {
+        where: {
+            deletedAt: null
+        }
+    });
+
     return Task;
 }
 

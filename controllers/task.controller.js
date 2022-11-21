@@ -31,8 +31,8 @@ exports.create = (req, res) => {
 
 };
 // Retrieve all Tutorials from the database.
-exports.findAll = (req, res) => {
-    Task.findAll({
+exports.findAll = async (req, res) => {
+    await Task.findAll({
         order: [
             ['id', 'DESC'],
         ],
@@ -68,10 +68,11 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Task.findByPk(id, {
+    Task.findOne({
         order: [
             ['id', 'DESC'],
         ],
+        where: { id: id, deleted_at: null },
         attributes: ['id', 'title', 'description', 'due_date'],
         include: [
             {
