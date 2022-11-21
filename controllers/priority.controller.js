@@ -2,14 +2,14 @@ const db = require("../models");
 const Priority = db.priority;
 
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     const priorities = {
         tag: req.body.tag,
         sort_level: req.body.sort_level,
         color_id: req.body.color_id
     }
 
-    Priority.create(priorities)
+    await Priority.create(priorities)
         .then(data => {
             res.send(data);
         })
@@ -20,8 +20,8 @@ exports.create = (req, res) => {
         })
 }
 
-exports.findAll = (req, res) => {
-    Priority.findAll({
+exports.findAll = async (req, res) => {
+    await Priority.findAll({
         order: [
             ['id', 'DESC'],
         ],
@@ -40,10 +40,10 @@ exports.findAll = (req, res) => {
         })
 }
 
-exports.findOne = (req, res) => {
+exports.findOne = async (req, res) => {
     const id = req.params.id;
 
-    Priority.findOne({
+    await Priority.findOne({
         where: { id: id, deleted_at: null },
     })
         .then(data => {
@@ -57,10 +57,10 @@ exports.findOne = (req, res) => {
         })
 }
 
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
     const id = req.params.id;
 
-    Priority.update(req.body, {
+    await Priority.update(req.body, {
         where: { id: id }
     })
         .then(num => {
@@ -84,14 +84,14 @@ exports.update = (req, res) => {
         })
 }
 
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
     const id = req.params.id;
 
     const deleted = {
         deletedAt: Date.now()
     }
 
-    Priority.update(deleted, {
+    await Priority.update(deleted, {
         where: { id: id }
     })
         .then(num => {

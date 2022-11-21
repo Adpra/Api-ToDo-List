@@ -2,12 +2,12 @@ const db = require("../models");
 const Label = db.label;
 
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     const labels = {
         tag: req.body.tag,
     }
 
-    Label.create(labels)
+    await Label.create(labels)
         .then(data => {
             res.send(data)
         })
@@ -18,8 +18,8 @@ exports.create = (req, res) => {
         })
 }
 
-exports.findAll = (req, res) => {
-    Label.findAll({
+exports.findAll = async (req, res) => {
+    await Label.findAll({
         order: [
             ['id', 'DESC'],
         ],
@@ -37,10 +37,10 @@ exports.findAll = (req, res) => {
         })
 }
 
-exports.findOne = (req, res) => {
+exports.findOne = async (req, res) => {
     const id = req.params.id;
 
-    Label.findOne({
+    await Label.findOne({
         where: { id: id, deleted_at: null },
     })
         .then(data => {
@@ -54,10 +54,10 @@ exports.findOne = (req, res) => {
         })
 }
 
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
     const id = req.params.id;
 
-    Label.update(req.body, { where: { id: id } })
+    await Label.update(req.body, { where: { id: id } })
         .then(num => {
             if (num == 1) {
                 res.send({
@@ -79,14 +79,14 @@ exports.update = (req, res) => {
         })
 }
 
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
     const id = req.params.id;
 
     const deleted = {
         deletedAt: Date.now()
     }
 
-    Label.update(deleted, {
+    await Label.update(deleted, {
         where: {
             id: id
         }

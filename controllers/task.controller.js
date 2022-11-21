@@ -5,7 +5,7 @@ const Priority = require("../models").priority;
 const Label = require("../models").label;
 
 // Create and Save a new Tutorial
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
 
     const tasks = {
         title: req.body.title,
@@ -19,7 +19,7 @@ exports.create = (req, res) => {
 
     }
 
-    Task.create(tasks)
+    await Task.create(tasks)
         .then(data => {
             res.send(data);
         })
@@ -65,10 +65,10 @@ exports.findAll = async (req, res) => {
         });
 };
 // Find a single Tutorial with an id
-exports.findOne = (req, res) => {
+exports.findOne = async (req, res) => {
     const id = req.params.id;
 
-    Task.findOne({
+    await Task.findOne({
         order: [
             ['id', 'DESC'],
         ],
@@ -98,10 +98,10 @@ exports.findOne = (req, res) => {
         })
 };
 // Update a Tutorial by the id in the request
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
     const id = req.params.id;
 
-    Task.update(req.body, {
+    await Task.update(req.body, {
         where: { id: id }
     })
         .then(num => {
@@ -126,14 +126,14 @@ exports.update = (req, res) => {
 
 };
 // Delete a Tutorial with the specified id in the request
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
     const id = req.params.id;
 
     const deleted = {
         deletedAt: Date.now()
     }
 
-    Task.update(deleted, { where: { id: id } })
+    await Task.update(deleted, { where: { id: id } })
         .then(num => {
             if (num == 1) {
                 res.send({
