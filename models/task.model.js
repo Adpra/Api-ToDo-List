@@ -53,12 +53,18 @@ module.exports = (sequelize, Sequelize) => {
         foreignKey: {
             name: "priority_id"
         },
+        scope: {
+            deletedAt: null,
+        },
         as: 'priority',
     });
 
     Task.belongsTo(Label, {
         foreignKey: {
             name: "label_id"
+        },
+        scope: {
+            deletedAt: null,
         },
         as: 'category'
     });
