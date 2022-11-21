@@ -41,9 +41,7 @@ exports.findAll = (req, res) => {
         attributes: ['id', 'title', 'description', 'due_date'],
         include: [
             {
-                model: Priority,
-                // where: { deleted_at: null },
-                as: 'priority',
+                model: Priority, as: 'priority',
                 attributes: ['id', 'tag']
             },
             {
